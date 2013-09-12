@@ -2,6 +2,9 @@
 all:
 	python3 ./setup.py clean build sdist
 
+test:
+	python3 ./setup.py build test
+
 clean:
 	- rm -f ./testdb*
 	- rm -rf ./dist
@@ -9,4 +12,4 @@ clean:
 deb-packages: clean
 	debuild --no-tgz-check $(DEBUILD_OPTS)
 
-.PHONY: all clean deb-packages
+.PHONY: all test clean deb-packages
