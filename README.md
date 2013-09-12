@@ -31,13 +31,13 @@ Upgrading:
 ```
 umask 022
 
-git clone https://github.com/Softmotions/ejdb.git
-cd ./pyejdb
+git clone https://github.com/Softmotions/ejdb-python.git
+cd ./ejdb-python
 sudo python3 ./setup.py install
 ```
 
 
-**(C) Installing on Ubuntu/Debian (only for Python3.2)**
+**(C) Installing on Ubuntu/Debian (only for Python3.3)**
 
 ```
 sudo add-apt-repository ppa:adamansky/ejdb
