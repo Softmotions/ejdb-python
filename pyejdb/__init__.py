@@ -175,6 +175,12 @@ class EJDB(object):
         self.__ejdb = _pyejdb.EJDB()
         self.__ejdb.open(fpath, mode)
 
+    def __enter__(self):
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        self.close()
+
     @property
     def isopen(self):
         return self.__ejdb.isopen()
