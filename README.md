@@ -26,6 +26,10 @@ Upgrading:
    sudo pip install pyejdb --upgrade
 ```
 
+*note*:
+The package in pip can be outdated, therefore the installation may fail on macOs due to the lack of the "rt" library.
+MacOS users experiencing this problem should install from source. [fixed here](https://github.com/Softmotions/ejdb-python/commit/70568359d9e71f2a041b5514b3311af3bc222ad0)
+
 **(B) Installing directly from sources**
 
 ```
