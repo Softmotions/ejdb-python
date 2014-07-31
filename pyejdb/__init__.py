@@ -353,7 +353,7 @@ class EJDB(object):
            - $inc Increment operation. Only number types are supported.
                - {.., '$inc' : {'field1' : number, ...,  'field1' : number}
            - $dropall In-place record removal operation.
-               - {.., '$dropall' : true}
+               - {.., '$dropall' : True}
            - $addToSet Atomically adds value to the array only if its not in the array already.
                        If containing array is missing it will be created.
                - {.., '$addToSet' : {'fpath' : val1, 'fpathN' : valN, ...}}
