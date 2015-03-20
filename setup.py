@@ -1,10 +1,11 @@
-#!/usr/bin/python
+# !/usr/bin/python
 
 
 try:
     from setuptools import setup, Feature
 except ImportError:
     from distribute_setup import use_setuptools
+
     use_setuptools()
     from setuptools import setup, Feature
 
@@ -46,14 +47,14 @@ class TestCommand(Command):
     def run(self):
         self.run_command('build')
         bld = self.distribution.get_command_obj('build')
-        #Add build_lib in to sys.path so that unittest can found DLLs and libs
+        # Add build_lib in to sys.path so that unittest can found DLLs and libs
         sys.path = [os.path.abspath(bld.build_lib)] + sys.path
 
         import shlex
         import unittest
 
         test_argv0 = [sys.argv[0] + ' test --args=']
-        #For transfering args to unittest, we have to split args
+        # For transfering args to unittest, we have to split args
         #by ourself, so that command like:
         #python setup.py test --args="-v -f"
         #can be executed, and the parameter '-v -f' can be
@@ -75,8 +76,10 @@ class EJDBPythonExt(object):
             kwargs["libraries"].append("rt")
         self.c_ext = Extension(*args, **kwargs)
 
+
 err_msg = """Aborted: pyejdb requires {0} >= {1} to be installed.
 See {2} for more information."""
+
 
 def check_extension(ext):
     lib = find_library(ext.libname)
@@ -89,21 +92,24 @@ def check_extension(ext):
 
     return lib
 
-ejdb_ext = EJDBPythonExt(True, "tcejdb", "EJDB", "1.1.14",
+
+ejdb_ext = EJDBPythonExt(True, "ejdb", "EJDB", "1.2.3",
                          "tcversion", "http://ejdb.org",
                          "_pyejdb", ["src/pyejdb.c"],
-                         libraries=["tcejdb", "z", "pthread", "m", "c"],
-                         extra_compile_args=["-std=c99", "-Wall"])
+                         libraries=["ejdb", "z", "pthread", "m", "c"],
+                         extra_compile_args=["-std=gnu99", "-Wall"])
 
-class build_ext(_build_ext):
+
+class BuildExt(_build_ext):
     def finalize_options(self):
         _build_ext.finalize_options(self)
         if "sdist" not in sys.argv:
             self.extensions = [ext.c_ext for ext in (ejdb_ext,) if check_extension(ext)]
 
+
 setup(
     name="pyejdb",
-    version="1.0.15",
+    version="1.0.16",
     url="http://ejdb.org",
     keywords=["ejdb", "tokyocabinet", "nosql", "database", "storage", "embedded", "mongodb", "json"],
     description="Python 2.7/3.x binding for EJDB database engine.",
@@ -113,9 +119,9 @@ setup(
     license="GNU Lesser General Public License (LGPL)",
     packages=["pyejdb"],
     cmdclass={
-        "build_ext": build_ext,
+        "build_ext": BuildExt,
         "test": TestCommand,
-        },
+    },
     ext_modules=[ejdb_ext.c_ext],
     classifiers=[
         "Development Status :: 4 - Beta",
@@ -128,8 +134,9 @@ setup(
         "Programming Language :: Python :: 2",
         "Programming Language :: Python :: 3.2",
         "Programming Language :: Python :: 3.3",
+        "Programming Language :: Python :: 3.4",
         "Programming Language :: Python :: 3",
         "Topic :: Software Development :: Libraries"
     ],
-    data_files = [("doc", ["README.md"])]
+    data_files=[("doc", ["README.md"])]
 )

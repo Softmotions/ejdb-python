@@ -18,7 +18,7 @@
 #define	PYEJDB_H
 
 #include <Python.h>
-#include <tcejdb/ejdb_private.h>
+#include <ejdb/ejdb_private.h>
 
 #if PY_MAJOR_VERSION >= 3
 #define BYTES_FORMAT_STRING "y#"

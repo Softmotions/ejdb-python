@@ -41,7 +41,8 @@ typedef struct {
 PyDoc_STRVAR(ejdb_version_doc, "version() -> str\n\nReturns the version string of the underlying EJDB library.");
 
 static PyObject* ejdb_version(PyObject *module) {
-    return PyUnicode_FromString(tcversion);
+    const char *v = ejdbversion();
+    return PyUnicode_FromString(v);
 }
 
 /* pyejdb.m_methods */

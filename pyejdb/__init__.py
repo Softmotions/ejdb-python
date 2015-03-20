@@ -51,7 +51,7 @@ __all__ = [
     "libejdb_version"
 ]
 
-version_tuple = (1, 0, 15)
+version_tuple = (1, 0, 16)
 
 def get_version_string():
     return '.'.join(map(str, version_tuple))
@@ -242,7 +242,7 @@ class EJDB(object):
 
         Samples:
         >>> ejdb.save('foo', {'foo' : 'bar'})
-        >>> ejdb.save('foo', {_id : '511c72ae7922641d00000000', 'foo' : 'bar'}, {'foo' : 'bar2'}, ..., merge=True)
+        >>> ejdb.save('foo', {_id : '511c72ae7922641d00000000', 'foo' : 'bar'}, {'foo' : 'bar2'}, merge=True)
         >>> ejdb.save('foo', *[{'foo' : 'bar'}, {'foo' : 'bar2'}, ...])
 
         If collection with `cname` does not exists it will be created.

@@ -1,4 +1,4 @@
-#-*- coding: utf8 -*-
+# -*- coding: utf8 -*-
 
 # *************************************************************************************************
 #  Python API for EJDB database library http://ejdb.org
@@ -32,7 +32,6 @@ if PY3:
     from io import StringIO as strio
 else:
     from io import BytesIO as strio
-
 
 
 class TestOne(unittest.TestCase):
@@ -124,7 +123,7 @@ class TestOne(unittest.TestCase):
         self.assertEqual(len(cur[2:]), 0)
 
         cur = ejdb.find("parrots",
-                {"name": bson.BSON_Regex(("(grenny|bounty)", "i"))},
+                        {"name": bson.BSON_Regex(("(grenny|bounty)", "i"))},
                         hints={"$orderby": [("name", 1)]})
         self.assertEqual(len(cur), 2)
         self.assertEqual(cur[0]["name"], "Bounty")
@@ -141,7 +140,7 @@ class TestOne(unittest.TestCase):
         sally = {
             "name": "Sally",
             "mood": "Angry",
-            }
+        }
         molly = {
             "name": "Molly",
             "mood": "Very angry",
@@ -182,16 +181,15 @@ class TestOne(unittest.TestCase):
         self.assertTrue(ejdb.load("bars", bar["_id"]) is not None)
 
         ejdb.update("upsertcoll",
-                {"foo": "bar", "$upsert": {"foo": "bar"}})
+                    {"foo": "bar", "$upsert": {"foo": "bar"}})
         self.assertTrue(ejdb.findOne("upsertcoll", {"foo": "bar"}) is not None)
 
-
         cmd = {
-            "ping" : {}
+            "ping": {}
         }
         cmdret = ejdb.command(cmd)
         self.assertIsNotNone(cmdret)
-        self.assertEquals(cmdret["log"], "pong")
+        self.assertEqual(cmdret["log"], "pong")
 
 
     @classmethod
@@ -199,6 +197,7 @@ class TestOne(unittest.TestCase):
         if cls._ejdb:
             cls._ejdb.close()
             cls._ejdb = None
+
 
 if __name__ == '__main__':
     unittest.main()
