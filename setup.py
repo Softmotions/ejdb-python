@@ -96,7 +96,7 @@ def check_extension(ext):
 ejdb_ext = EJDBPythonExt(True, "ejdb", "EJDB", "1.2.3",
                          "tcversion", "http://ejdb.org",
                          "_pyejdb", ["src/pyejdb.c"],
-                         libraries=["ejdb", "z", "pthread", "m", "c"],
+                         libraries=["ejdb", "pthread", "m", "c"],
                          extra_compile_args=["-std=gnu99", "-Wall"])
 
 
