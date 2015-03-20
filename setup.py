@@ -97,7 +97,7 @@ ejdb_ext = EJDBPythonExt(True, "ejdb", "EJDB", "1.2.3",
                          "tcversion", "http://ejdb.org",
                          "_pyejdb", ["src/pyejdb.c"],
                          libraries=["ejdb", "pthread", "m", "c"],
-                         extra_compile_args=["-std=gnu99", "-Wall"])
+                         extra_compile_args=["-std=gnu99", "-Wall", "-Wno-declaration-after-statement"])
 
 
 class BuildExt(_build_ext):
